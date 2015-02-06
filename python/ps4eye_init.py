@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import usb.core
 import usb.util
+import os
 import sys
 
 # check if initialized device already exists
@@ -31,7 +32,8 @@ def read_chunks(infile, chunk_size):
 chunk_size=512
 index=0x14
 value=0
-firmware=open("firmware.bin","rb")
+script_dir=os.path.abspath(os.path.dirname(__file__))
+firmware=open(script_dir + "/firmware.bin","rb")
 
 # transfer 512b chunks of the firmware
 for chunk in read_chunks(firmware, chunk_size):
